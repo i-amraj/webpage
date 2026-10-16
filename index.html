@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Shukla Sweets & Namkeen | Vikas Nagar, Kanpur</title>
+    <meta name="description" content="Kanpur's celebrated taste since decades. Famous for pure desi ghee traditional Indian confections, piping hot samosas, jalebis, khasta kachori and kadak kulhad chai in Vikas Nagar, Kanpur. Rated 4.5★ on Zomato & Swiggy.">
+    <meta name="keywords" content="New Shukla Sweets, Shukla Sweets Kanpur, Vikas Nagar Kanpur, Samosa Kanpur, Kulhad Chai, Pure Ghee Mithai, Kanpur Street Food, Khasta Kachori">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="New Shukla Sweets & Namkeen - Kanpur">
+    <meta property="og:description" content="Authentic Indian Sweets, Samosas, Namkeen & Kulhad Chai at Vikas Nagar, Khyora, Kanpur.">
+    <meta property="og:image" content="assets/shukla_hero.jpg?v=2">
+    <meta property="og:type" content="restaurant">
+
+    <!-- Google Fonts: Playfair Display SC, Playfair Display, Plus Jakarta Sans, Rozha One -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS with custom configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display SC"', 'serif'],
+                        display: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        hindi: ['"Rozha One"', 'serif']
+                    },
+                    colors: {
+                        shukla: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                            red: '#dc2626',
+                            maroon: '#2a0a0d',
+                            dark: '#0a0405',
+                            card: '#15090b',
+                            cardHover: '#1f0d10'
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --primary-red: #dc2626;
+            --dark-bg: #0a0405;
+            --dark-card: #15090b;
+            --gold-border: rgba(245, 158, 11, 0.28);
+            --gold-glow: rgba(245, 158, 11, 0.45);
+        }
+
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #fef3c7;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(220, 38, 38, 0.09) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                linear-gradient(to bottom, #0a0405, #110608, #070203);
+            background-attachment: fixed;
+        }
+
+        /* Top Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3.5px;
+            width: 100%;
+            background: linear-gradient(90deg, #dc2626, #f59e0b, #fbbf24, #ea580c);
+            transform-origin: 0% 50%;
+            transform: scaleX(0);
+            z-index: 100;
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.8);
+        }
+
+        /* 21st.dev Cursor Spotlight Effect */
+        .spotlight-card {
+            position: relative;
+            background: rgba(21, 9, 11, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--gold-border);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .spotlight-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(420px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(251, 191, 36, 0.16), transparent 65%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 2;
+        }
+
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+
+        .spotlight-card:hover {
+            border-color: rgba(251, 191, 36, 0.65);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.95), 0 0 30px rgba(245, 158, 11, 0.22);
+        }
+
+        /* 3D Perspective Tilt Container */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        /* Gold Shimmer Text Animation */
+        .gold-shimmer {
+            background: linear-gradient(90deg, #fef08a 0%, #f59e0b 25%, #ffffff 50%, #f59e0b 75%, #fef08a 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: textShimmer 4.5s linear infinite;
+        }
+
+        @keyframes textShimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* Marquee Ribbon */
+        .marquee-track {
+            display: flex;
+            overflow: hidden;
+            user-select: none;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-slide {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 2.75rem;
+            min-width: 100%;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-slide:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2.75rem)); }
+        }
+
+        /* Buttons */
+        .btn-royal-primary {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0a0405;
+            font-weight: 700;
+            padding: 0.8rem 1.85rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            border: 1px solid #fde68a;
+            box-shadow: 0 4px 20px rgba(217, 119, 6, 0.45);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-royal-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.65);
+            color: #000;
+        }
+
+        .btn-royal-secondary {
+            background: rgba(245, 158, 11, 0.08);
+            color: #fef3c7;
+            font-weight: 600;
+            padding: 0.8rem 1.85rem;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            border: 1px solid var(--gold-border);
+            backdrop-filter: blur(12px);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-royal-secondary:hover {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: #fbbf24;
+            color: #ffffff;
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.25);
+        }
+
+        /* Ambient Badge Pulse */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-7px) rotate(0.8deg); }
+        }
+        .animate-float-slow {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-amber-500 selection:text-black antialiased">
+
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Ambient Sparkle Canvas -->
+    <canvas id="sparkle-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Top Status Bar -->
+    <div class="relative z-50 bg-[#1a080a] border-b border-amber-600/30 text-amber-200 text-xs sm:text-sm py-2 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                    Open Now · Closes 10:00 PM
+                </span>
+                <span class="hidden md:inline text-amber-500/50">|</span>
+                <span class="hidden md:flex items-center gap-1.5 text-amber-300/85">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-amber-400"></i>
+                    33B, Vikas Nagar, Khyora, Kanpur, UP 208024
+                </span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:09140101477" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 font-bold text-amber-300">
+                    <i data-lucide="phone-call" class="w-3.5 h-3.5 text-amber-400"></i>
+                    091401 01477
+                </a>
+                <span class="text-amber-500/40">|</span>
+                <span class="text-amber-300/90 font-medium">Avg. ₹1–200 / person</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-[#120507]/85 backdrop-blur-md border-b border-amber-500/20 py-3.5 px-4 sm:px-8 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 p-0.5 shadow-lg shadow-amber-500/25 group-hover:scale-105 transition-transform shrink-0">
+                    <div class="w-full h-full bg-[#180a0c] rounded-full flex items-center justify-center border border-amber-400/40">
+                        <span class="font-serif text-amber-400 text-lg font-bold">NS</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-serif text-lg sm:text-2xl font-bold tracking-wider text-white group-hover:text-amber-300 transition-colors">
+                            NEW SHUKLA
+                        </span>
+                        <span class="text-[10px] sm:text-xs bg-amber-500/20 text-amber-300 border border-amber-500/40 px-1.5 py-0.5 rounded font-mono font-bold">
+                            KANPUR
+                        </span>
+                    </div>
+                    <p class="text-[11px] sm:text-xs text-amber-400/80 tracking-widest uppercase font-medium">
+                        Sweets • Namkeen • Samosa • Chai
+                    </p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-amber-100/90">
+                <a href="#specialities" class="hover:text-amber-400 transition-colors">Specialities</a>
+                <a href="#menu" class="hover:text-amber-400 transition-colors">Celebrated Menu</a>
+                <a href="#ratings" class="hover:text-amber-400 transition-colors">Reviews & Ratings</a>
+                <a href="#location" class="hover:text-amber-400 transition-colors">Location & Hours</a>
+            </nav>
+
+            <!-- Header CTAs -->
+            <div class="flex items-center gap-3">
+                <a href="tel:09140101477" class="btn-royal-primary text-xs sm:text-sm !py-2 !px-4 sm:!px-5">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Call to Order</span>
+                    <span class="sm:hidden">Call</span>
+                </a>
+                <button id="nav-toggle" class="lg:hidden p-2 text-amber-300 hover:text-white bg-amber-950/40 border border-amber-500/30 rounded-xl cursor-pointer" aria-label="Toggle Navigation">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-nav" class="hidden lg:hidden pt-4 pb-2 border-t border-amber-500/20 mt-3 flex flex-col gap-2.5 text-sm font-medium">
+            <a href="#specialities" class="py-2 px-3 rounded-lg hover:bg-amber-500/10 text-amber-200">Our Specialities</a>
+            <a href="#menu" class="py-2 px-3 rounded-lg hover:bg-amber-500/10 text-amber-200">Celebrated Menu</a>
+            <a href="#ratings" class="py-2 px-3 rounded-lg hover:bg-amber-500/10 text-amber-200">Reviews & Ratings</a>
+            <a href="#location" class="py-2 px-3 rounded-lg hover:bg-amber-500/10 text-amber-200">Location & Hours</a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Scroll Parallax -->
+    <section id="hero" class="relative z-10 min-h-[92vh] flex items-center justify-center px-4 sm:px-8 py-16 sm:py-24 overflow-hidden">
+        <!-- Parallax Background Banner (GSAP Scrub Target) -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <img id="hero-parallax-img" src="assets/shukla_hero.jpg?v=2" alt="New Shukla Sweets Kanpur Royal Banquet" class="w-full h-[125%] -top-[10%] absolute object-cover object-center filter brightness-[0.42] scale-105 will-change-transform">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0405] via-[#0a0405]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0a0405] via-[#0a0405]/65 to-[#0a0405]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+            <!-- Royal Heritage Pill -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full spotlight-card border border-amber-400/40 text-amber-300 text-xs sm:text-sm font-semibold mb-6 shadow-xl shadow-amber-500/15 animate-float-slow">
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                <span>The Authentic Taste of Kanpur • Vikas Nagar & Khyora</span>
+                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+            </div>
+
+            <!-- Hero Headline -->
+            <h1 class="hero-headline text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6 font-serif">
+                Kanpur’s Celebrated Stop for <br>
+                <span class="gold-shimmer">Pure Desi Ghee Mithai,</span> <br>
+                <span class="text-amber-200">Crispy Samosa & Kadak Chai</span>
+            </h1>
+
+            <p class="hero-subhead max-w-2xl text-base sm:text-lg text-amber-100/80 mb-10 leading-relaxed font-normal">
+                Serving generations of Kanpurites with mouthwatering Punjabi samosas, kesari jalebis, authentic khasta kachori with hing aloo sabzi, handcrafted royal confections, and piping hot clay kulhad tea.
+            </p>
+
+            <!-- 21st.dev Spotlight Stats Grid with Animated Number Counters -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full max-w-4xl mb-10 text-left" id="stats-counter-section">
+                <!-- Zomato -->
+                <div class="spotlight-card tilt-card p-4 rounded-2xl">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-xs uppercase font-extrabold text-red-400 tracking-wider">Zomato</span>
+                        <div class="flex items-center text-amber-400 text-xs font-bold bg-amber-400/15 px-1.5 py-0.5 rounded">
+                            <span>4.5</span>
+                            <i data-lucide="star" class="w-3 h-3 fill-amber-400 ml-0.5"></i>
+                        </div>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-black text-white font-serif">
+                        <span class="counter-number" data-target="2790">0</span>+
+                    </div>
+                    <div class="text-[11px] text-amber-200/60 font-medium">Verified Orders</div>
+                </div>
+
+                <!-- Swiggy -->
+                <div class="spotlight-card tilt-card p-4 rounded-2xl">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-xs uppercase font-extrabold text-orange-400 tracking-wider">Swiggy</span>
+                        <div class="flex items-center text-amber-400 text-xs font-bold bg-amber-400/15 px-1.5 py-0.5 rounded">
+                            <span>4.4</span>
+                            <i data-lucide="star" class="w-3 h-3 fill-amber-400 ml-0.5"></i>
+                        </div>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-black text-white font-serif">
+                        <span class="counter-number" data-target="1500">0</span>+
+                    </div>
+                    <div class="text-[11px] text-amber-200/60 font-medium">Foodie Reviews</div>
+                </div>
+
+                <!-- Justdial -->
+                <div class="spotlight-card tilt-card p-4 rounded-2xl">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-xs uppercase font-extrabold text-blue-400 tracking-wider">Justdial</span>
+                        <div class="flex items-center text-amber-400 text-xs font-bold bg-amber-400/15 px-1.5 py-0.5 rounded">
+                            <span>4.0</span>
+                            <i data-lucide="star" class="w-3 h-3 fill-amber-400 ml-0.5"></i>
+                        </div>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-black text-white font-serif">
+                        <span class="counter-number" data-target="3838">0</span>+
+                    </div>
+                    <div class="text-[11px] text-amber-200/60 font-medium">Customer Votes</div>
+                </div>
+
+                <!-- Pocket Friendly -->
+                <div class="spotlight-card tilt-card p-4 rounded-2xl">
+                    <div class="flex items-center justify-between mb-1.5">
+                        <span class="text-xs uppercase font-extrabold text-emerald-400 tracking-wider">Budget</span>
+                        <i data-lucide="wallet" class="w-4 h-4 text-emerald-400"></i>
+                    </div>
+                    <div class="text-xl sm:text-2xl font-black text-white font-serif">₹1 – ₹200</div>
+                    <div class="text-[11px] text-amber-200/60 font-medium">Avg. Per Person</div>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#menu" class="btn-royal-primary">
+                    <i data-lucide="utensils" class="w-5 h-5"></i>
+                    <span>Explore Celebrated Menu</span>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=New+Shukla+Sweets+and+Namkeen+Vikas+Nagar+Kanpur" target="_blank" rel="noopener noreferrer" class="btn-royal-secondary">
+                    <i data-lucide="navigation" class="w-5 h-5 text-amber-400"></i>
+                    <span>Get Directions</span>
+                </a>
+                <a href="tel:09140101477" class="btn-royal-secondary">
+                    <i data-lucide="phone" class="w-5 h-5 text-amber-400"></i>
+                    <span>091401 01477</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Endless Marquee Ribbon with Hover Pause -->
+    <div class="relative z-20 py-3.5 bg-gradient-to-r from-[#1d070a] via-[#290a0f] to-[#1d070a] border-y border-amber-500/30">
+        <div class="marquee-track">
+            <div class="marquee-slide">
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> Pure Desi Ghee Mithai
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-400"></i> Fresh Crispy Samosas
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="coffee" class="w-4 h-4 text-yellow-500"></i> Kadak Kulhad Chai
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="award" class="w-4 h-4 text-amber-400"></i> 4.5★ on Zomato (2,790+ Votes)
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> 100% Hygienic Preparation
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-red-400"></i> Vikas Nagar, Khyora, Kanpur
+                </span>
+            </div>
+            <!-- Duplicate for infinite seamless scroll -->
+            <div class="marquee-slide" aria-hidden="true">
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i> Pure Desi Ghee Mithai
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="flame" class="w-4 h-4 text-orange-400"></i> Fresh Crispy Samosas
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="coffee" class="w-4 h-4 text-yellow-500"></i> Kadak Kulhad Chai
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="award" class="w-4 h-4 text-amber-400"></i> 4.5★ on Zomato (2,790+ Votes)
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i> 100% Hygienic Preparation
+                </span>
+                <span class="text-amber-500/40">•</span>
+                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold tracking-wider text-amber-300 uppercase">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-red-400"></i> Vikas Nagar, Khyora, Kanpur
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Specialities Section: 3 Pillars with 3D Spotlight Tilt -->
+    <section id="specialities" class="py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto">
+        <div class="text-center mb-16 specialities-header">
+            <span class="text-amber-400 text-xs sm:text-sm font-bold tracking-widest uppercase">The Heritage of Taste</span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-2 mb-3 font-serif">Signature Specialities</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto"></div>
+            <p class="text-amber-200/70 max-w-xl mx-auto mt-4 text-sm sm:text-base">
+                Fresh ingredients, pure milk fat, hand-ground spices, and time-tested recipes loved by Kanpur foodies.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Pillar 1: Samosa & Chai -->
+            <div class="spotlight-card tilt-card rounded-3xl overflow-hidden flex flex-col group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="assets/shukla_samosa_chai.jpg?v=2" alt="Kanpuri Samosa and Clay Kulhad Chai" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#15090b] via-transparent to-transparent"></div>
+                    <span class="absolute top-4 left-4 bg-amber-500 text-black text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        Signature Pair
+                    </span>
+                </div>
+                <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold mb-2">
+                            <span>CRISP</span> • <span>AROMATIC</span> • <span>AUTHENTIC</span>
+                        </div>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-amber-200 mb-2">
+                            Kanpuri Samosa & Kulhad Chai
+                        </h3>
+                        <p class="text-sm text-amber-100/75 leading-relaxed mb-6 font-light">
+                            Flaky golden triangles stuffed with spiced potatoes, green peas, and whole spices, accompanied by sweet tamarind saunth and fresh mint chutney, paired with slow-brewed ginger-cardamom chai in earthen cups.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-amber-500/20 flex items-center justify-between">
+                        <span class="text-xs text-amber-400 flex items-center gap-1.5 font-medium">
+                            <i data-lucide="flame" class="w-4 h-4 text-orange-400"></i> Made Fresh Every 30 Mins
+                        </span>
+                        <span class="text-amber-300 font-bold text-sm">₹15 – ₹30</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2: Royal Mithai -->
+            <div class="spotlight-card tilt-card rounded-3xl overflow-hidden flex flex-col group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="assets/shukla_royal_mithai.jpg?v=2" alt="Royal Indian Mithai and Sweets" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#15090b] via-transparent to-transparent"></div>
+                    <span class="absolute top-4 left-4 bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        100% Desi Ghee
+                    </span>
+                </div>
+                <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold mb-2">
+                            <span>PURE GHEE</span> • <span>KESARI</span> • <span>SILVER VARK</span>
+                        </div>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-amber-200 mb-2">
+                            Pure Desi Ghee Mithai
+                        </h3>
+                        <p class="text-sm text-amber-100/75 leading-relaxed mb-6 font-light">
+                            Traditional delicacies made with pure cow milk and desi ghee: genuine silver foil Kaju Katli, saffron soaked Kesari Jalebi, rich Motichoor Ladoo, and melt-in-the-mouth Shahi Gulab Jamun.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-amber-500/20 flex items-center justify-between">
+                        <span class="text-xs text-amber-400 flex items-center gap-1.5 font-medium">
+                            <i data-lucide="gift" class="w-4 h-4 text-amber-400"></i> Wedding & Festive Packs
+                        </span>
+                        <span class="text-amber-300 font-bold text-sm">₹280 – ₹920/kg</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3: Khasta & Namkeen -->
+            <div class="spotlight-card tilt-card rounded-3xl overflow-hidden flex flex-col group">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="assets/kachori_chaat.jpg?v=2" alt="Kanpur Khasta Kachori with Hing Aloo Sabzi" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#15090b] via-transparent to-transparent"></div>
+                    <span class="absolute top-4 left-4 bg-yellow-500 text-black text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        Kanpur Pride
+                    </span>
+                </div>
+                <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-amber-400 font-semibold mb-2">
+                            <span>FLAKY</span> • <span>HING TASTE</span> • <span>CHATPATI SABZI</span>
+                        </div>
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-amber-200 mb-2">
+                            Khasta Kachori & Namkeen
+                        </h3>
+                        <p class="text-sm text-amber-100/75 leading-relaxed mb-6 font-light">
+                            Crispy lentil stuffed Khastas crushed and served with steaming, piping hot hing-infused aloo rassa and pickled chilies, along with crunchy Vikas Nagar special savory mixtures.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-amber-500/20 flex items-center justify-between">
+                        <span class="text-xs text-amber-400 flex items-center gap-1.5 font-medium">
+                            <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i> Morning Special
+                        </span>
+                        <span class="text-amber-300 font-bold text-sm">₹35 – ₹60</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Celebrated Menu Grid with 21st.dev Spotlights & Animated Filters -->
+    <section id="menu" class="py-24 px-4 sm:px-8 relative z-10 bg-gradient-to-b from-transparent via-[#130507]/75 to-transparent">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 menu-header">
+                <div>
+                    <span class="text-amber-400 text-xs sm:text-sm font-bold tracking-widest uppercase">Fresh From The Karahi</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-1 font-serif">Popular Delights</h2>
+                    <p class="text-amber-200/70 mt-2 text-sm sm:text-base">Click any delicacy to place a quick order or schedule fresh takeaway.</p>
+                </div>
+                
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2" id="menu-filter-container">
+                    <button class="filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all bg-amber-500 text-black border border-amber-300 shadow-lg shadow-amber-500/25 cursor-pointer" data-category="all">
+                        All Items
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-[#1b0a0d] text-amber-200 hover:text-white border border-amber-500/30 cursor-pointer" data-category="sweets">
+                        Royal Mithai
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-[#1b0a0d] text-amber-200 hover:text-white border border-amber-500/30 cursor-pointer" data-category="snacks">
+                        Hot Snacks
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-[#1b0a0d] text-amber-200 hover:text-white border border-amber-500/30 cursor-pointer" data-category="namkeen">
+                        Namkeen
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all bg-[#1b0a0d] text-amber-200 hover:text-white border border-amber-500/30 cursor-pointer" data-category="tea">
+                        Chai & Drinks
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="items-grid">
+                
+                <!-- Item 1: Samosa -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="snacks">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/samosa_plate.jpg?v=2" alt="Kanpuri Samosa with Mint Chutney" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Bestseller
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Kanpuri Samosa</h4>
+                                <span class="text-amber-400 font-bold">₹15/pc</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Crisp • Spiced Potato • Saunth</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Golden pastry packed with spiced cumin potatoes, green peas, served with sweet saunth & mint chutney.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Kanpuri Samosa', '₹15 per piece')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 2: Kesar Jalebi -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="sweets">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/jalebi_spiral.jpg?v=2" alt="Hot Saffron Jalebi" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-black text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Desi Ghee
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Kesar Jalebi</h4>
+                                <span class="text-amber-400 font-bold">₹120/250g</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Pure Ghee • Syrupy • Pistachio</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Crisp golden fermented coils fried in pure desi ghee and dunked in saffron cardamom syrup.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Kesar Jalebi', '₹120 for 250g (Pure Desi Ghee)')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 3: Kulhad Chai -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="tea">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/kulhad_chai.jpg?v=2" alt="Clay Kulhad Masala Chai" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-yellow-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Kulhad
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Kulhad Masala Chai</h4>
+                                <span class="text-amber-400 font-bold">₹20/cup</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Ginger • Cardamom • Terracotta</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Boiled whole milk infused with freshly crushed ginger, green cardamom and Assam black tea in clay cups.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Kulhad Masala Chai', '₹20 per cup')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 4: Gulab Jamun -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="sweets">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/gulab_jamun.jpg?v=2" alt="Shahi Gulab Jamun" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-amber-700 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Soft & Fresh
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Shahi Gulab Jamun</h4>
+                                <span class="text-amber-400 font-bold">₹25/pc</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Khoya • Rose Water • Cardamom</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Pillowy khoya dumplings bathed in rose & cardamom scented syrup, garnished with pistachios.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Shahi Gulab Jamun', '₹25 per piece')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 5: Khasta Kachori -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="snacks">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/kachori_chaat.jpg?v=2" alt="Khasta Kachori with Aloo Sabzi" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-orange-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Special
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Khasta Aloo Sabzi</h4>
+                                <span class="text-amber-400 font-bold">₹40/plate</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Hing Gravy • Urad Dal • Pickled Chili</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Crispy spiced urad dal khasta served hot with spicy hing-tempered potato gravy and green chilies.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Khasta Aloo Sabzi', '₹40 per plate (2 Khastas + Sabzi)')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 6: Kaju Katli -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="sweets">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/shukla_royal_mithai.jpg?v=2" alt="Kaju Katli Cashew Fudge" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-yellow-400 text-black text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Premium
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Diamond Kaju Katli</h4>
+                                <span class="text-amber-400 font-bold">₹880/kg</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">100% Whole Cashew • Silver Vark</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Diamond-cut royal cashew fudge made of 100% fine Goan cashews crowned with authentic silver foil.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Diamond Kaju Katli', '₹880 per kg / ₹220 per 250g')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 7: Shukla Namkeen -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="namkeen">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/namkeen_snack.jpg?v=2" alt="Vikas Nagar Special Mixture" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-amber-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Savory
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Special Mixture</h4>
+                                <span class="text-amber-400 font-bold">₹70/250g</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Crunchy Sev • Peanuts • Curry Leaves</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Crunchy spiced blend of gram flour sev, fried peanuts, lentils, curry leaves and aromatic chatpata masala.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Special Mixture Namkeen', '₹70 for 250g / ₹280 per kg')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Item 8: Motichoor Ladoo -->
+                <div class="spotlight-card tilt-card flex flex-col justify-between" data-category="sweets">
+                    <div>
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="assets/shukla_hero.jpg?v=2" alt="Desi Ghee Motichoor Ladoo" class="w-full h-full object-cover">
+                            <span class="absolute top-3 right-3 bg-amber-500 text-black text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
+                                Pure Ghee
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-serif text-lg font-bold text-amber-100">Motichoor Ladoo</h4>
+                                <span class="text-amber-400 font-bold">₹480/kg</span>
+                            </div>
+                            <span class="text-[11px] text-amber-400/80 font-medium block mb-2">Fine Pearls • Desi Ghee • Cardamom</span>
+                            <p class="text-xs text-amber-200/70 line-clamp-2 mb-4">Melt in your mouth golden pearls fried in desi ghee, blended with cardamom, pistachios and saffron.</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5">
+                        <button onclick="openModal('Motichoor Ladoo', '₹480 per kg / ₹120 per 250g')" class="w-full py-2.5 bg-amber-500/15 hover:bg-amber-500 hover:text-black border border-amber-500/40 rounded-xl text-xs font-bold text-amber-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer">
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i> Inquire / Order
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof & Reviews Showcase with Stagger Reveal -->
+    <section id="ratings" class="py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto">
+        <div class="spotlight-card rounded-3xl p-8 sm:p-12 border border-amber-400/30">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Overall Score -->
+                <div class="lg:col-span-5 text-center lg:text-left ratings-left">
+                    <span class="text-amber-400 text-xs sm:text-sm font-bold tracking-widest uppercase">Verified Patron Feedback</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4 font-serif">Loved by Over 8,000+ Kanpurites</h2>
+                    <p class="text-sm sm:text-base text-amber-100/80 mb-6 leading-relaxed font-light">
+                        From morning college students in Kakadeo to families across Khyora and Vikas Nagar, our pure taste speaks for itself.
+                    </p>
+                    
+                    <div class="flex items-center justify-center lg:justify-start gap-4 mb-6">
+                        <div class="text-5xl sm:text-6xl font-black text-amber-400 font-serif">4.4</div>
+                        <div class="text-left">
+                            <div class="flex text-amber-400 mb-1">
+                                <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+                                <i data-lucide="star-half" class="w-5 h-5 fill-amber-400"></i>
+                            </div>
+                            <div class="text-xs text-amber-200/80">Aggregated across Zomato, Swiggy & Justdial</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                        <a href="https://www.google.com/search?q=new+shukla+sweets+kanpur+reviews" target="_blank" rel="noopener noreferrer" class="btn-royal-primary text-xs !py-2.5 !px-5">
+                            <i data-lucide="edit-3" class="w-4 h-4"></i> Write a Google Review
+                        </a>
+                        <a href="https://www.zomato.com/kanpur/new-shukla-sweets-and-namkeen-vikas-nagar/order" target="_blank" rel="noopener noreferrer" class="btn-royal-secondary text-xs !py-2.5 !px-5">
+                            Order on Zomato
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Real Customer Testimonials -->
+                <div class="lg:col-span-7 flex flex-col gap-4 ratings-right">
+                    
+                    <!-- Review 1 -->
+                    <div class="spotlight-card p-5 rounded-2xl border-amber-500/25">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-amber-500/20 text-amber-300 font-bold flex items-center justify-center text-xs">
+                                    GK
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Google Verified Reviewer</h4>
+                                    <span class="text-[11px] text-amber-200/60">Kanpur Resident</span>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-amber-100/90 italic">
+                            "Quality good. Way to the shop is little difficult, staff behaviour good and sweets are very fresh!"
+                        </p>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="spotlight-card p-5 rounded-2xl border-amber-500/25">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-emerald-300 font-bold flex items-center justify-center text-xs">
+                                    AP
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Local Food Guide</h4>
+                                    <span class="text-[11px] text-amber-200/60">Vikas Nagar Regular</span>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-amber-100/90 italic">
+                            "Hygienic place, tasty stuff. Best hot samosa and fresh jalebi in the morning around Vikas Nagar. Very affordable!"
+                        </p>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="spotlight-card p-5 rounded-2xl border-amber-500/25">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-3">
+                                <div class="w-9 h-9 rounded-full bg-blue-500/20 text-blue-300 font-bold flex items-center justify-center text-xs">
+                                    RK
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Swiggy Customer</h4>
+                                    <span class="text-[11px] text-amber-200/60">Takeaway Order</span>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400">
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-400/30"></i>
+                            </div>
+                        </div>
+                        <p class="text-sm text-amber-100/90 italic">
+                            "Atmosphere and food quality is good. Great tea and evening snacks with friends. Packaging is clean."
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Location, Hours & Direct Map Section -->
+    <section id="location" class="py-24 px-4 sm:px-8 relative z-10 max-w-7xl mx-auto">
+        <div class="text-center mb-16 location-header">
+            <span class="text-amber-400 text-xs sm:text-sm font-bold tracking-widest uppercase">Plan Your Visit</span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-1 font-serif">Location & Store Timings</h2>
+            <p class="text-amber-200/70 mt-2 text-sm sm:text-base">We welcome you for dine-in snacks, bulk festival sweets, and takeaway orders.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Store Contact Card -->
+            <div class="lg:col-span-5 flex flex-col justify-between spotlight-card p-8 rounded-3xl border-amber-500/30">
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-amber-300 mb-6">New Shukla Sweets & Namkeen</h3>
+                    
+                    <div class="flex flex-col gap-6">
+                        <!-- Address -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase font-extrabold text-amber-400 tracking-wider">Address</h4>
+                                <p class="text-sm text-white font-medium mt-1 leading-relaxed">
+                                    33B, Vikas Nagar, Khyora,<br>
+                                    Kanpur, Uttar Pradesh 208024
+                                </p>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=33B+Vikas+Nagar+Khyora+Kanpur+Uttar+Pradesh+208024" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-400 hover:underline mt-1.5 inline-block font-semibold">
+                                    Open in Google Maps Navigation →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase font-extrabold text-amber-400 tracking-wider">Direct Phone</h4>
+                                <a href="tel:09140101477" class="text-base text-amber-200 font-bold hover:text-amber-400 transition-colors block mt-1">
+                                    091401 01477
+                                </a>
+                                <span class="text-xs text-amber-200/60">Party orders & wedding boxes available</span>
+                            </div>
+                        </div>
+
+                        <!-- Timings -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase font-extrabold text-emerald-400 tracking-wider">Opening Hours</h4>
+                                <p class="text-sm text-white font-medium mt-1">
+                                    Mon – Sun: <span class="text-amber-300 font-bold">7:00 AM – 10:00 PM</span>
+                                </p>
+                                <div class="mt-2 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span>Open Right Now · Closes 10:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0">
+                                <i data-lucide="wallet" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs uppercase font-extrabold text-amber-400 tracking-wider">Average Price</h4>
+                                <p class="text-sm text-white font-medium mt-1">
+                                    ₹1 – ₹200 per person
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-amber-500/20 flex flex-wrap gap-3">
+                    <a href="tel:09140101477" class="btn-royal-primary text-xs flex-1 text-center justify-center">
+                        <i data-lucide="phone-call" class="w-4 h-4"></i> Call 091401 01477
+                    </a>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=33B+Vikas+Nagar+Khyora+Kanpur+Uttar+Pradesh+208024" target="_blank" rel="noopener noreferrer" class="btn-royal-secondary text-xs flex-1 text-center justify-center">
+                        <i data-lucide="navigation" class="w-4 h-4"></i> Get Route
+                    </a>
+                </div>
+            </div>
+
+            <!-- Map View Container -->
+            <div class="lg:col-span-7 spotlight-card rounded-3xl overflow-hidden border-amber-500/30 flex flex-col">
+                <div class="p-6 border-b border-amber-500/20 flex items-center justify-between">
+                    <div>
+                        <h4 class="font-bold text-white text-base">Kanpur Map & Navigation</h4>
+                        <p class="text-xs text-amber-200/70">Vikas Nagar main road, Khyora area</p>
+                    </div>
+                    <span class="text-xs bg-amber-500/20 text-amber-300 font-mono px-3 py-1 rounded-full border border-amber-500/40">
+                        PIN: 208024
+                    </span>
+                </div>
+                
+                <div class="relative flex-1 min-h-[380px] w-full bg-[#130708]">
+                    <iframe 
+                        title="New Shukla Sweets Kanpur Map"
+                        src="https://maps.google.com/maps?q=New%20Shukla%20Sweets%20and%20Namkeen%20Vikas%20Nagar%20Kanpur&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                        class="w-full h-full min-h-[380px] border-0 filter invert-[0.9] hue-rotate-180 contrast-125 brightness-90"
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <div class="p-4 bg-[#1f0a0e]/50 border-t border-amber-500/20 text-xs text-amber-200/80 flex items-center justify-between">
+                    <span>💡 Fresh morning samosa & jalebi batch starts at 7:30 AM</span>
+                    <a href="https://www.google.com/search?q=new+shukla+sweets+kanpur" target="_blank" rel="noopener noreferrer" class="text-amber-400 font-bold hover:underline">
+                        View on Google →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative z-10 bg-[#060203] border-t border-amber-500/20 py-12 px-4 sm:px-8 text-center text-xs text-amber-200/60">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-amber-500 flex items-center justify-center text-black font-serif font-bold text-sm">
+                    NS
+                </div>
+                <div class="text-left">
+                    <span class="font-serif text-white text-sm font-bold block">New Shukla Sweets & Namkeen</span>
+                    <span class="text-amber-400/80 text-[11px]">33B, Vikas Nagar, Khyora, Kanpur 208024</span>
+                </div>
+            </div>
+
+            <p>© 2026 New Shukla Sweets & Namkeen. Traditional Indian Confections, Samosas, Namkeen & Tea.</p>
+
+            <div class="flex items-center gap-4 text-amber-300 font-medium">
+                <a href="tel:09140101477" class="hover:text-amber-400 transition-colors">Call</a>
+                <span>•</span>
+                <a href="#menu" class="hover:text-amber-400 transition-colors">Menu</a>
+                <span>•</span>
+                <a href="#location" class="hover:text-amber-400 transition-colors">Directions</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Inquire / Order Modal -->
+    <div id="item-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="spotlight-card max-w-md w-full p-6 sm:p-8 rounded-3xl border border-amber-400/50 shadow-2xl relative text-center">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-amber-400/70 hover:text-white p-1 rounded-full cursor-pointer" aria-label="Close Modal">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="w-14 h-14 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto mb-4 border border-amber-400/30">
+                <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+            </div>
+            
+            <h3 class="font-serif text-2xl font-bold text-white" id="modal-name">Item Name</h3>
+            <p class="text-sm text-amber-400 font-bold mt-1" id="modal-price">Price</p>
+            <p class="text-xs text-amber-200/70 mt-3 mb-6">
+                Call the shop directly to place an instant takeaway order or check bulk availability for parties and festivals!
+            </p>
+
+            <div class="flex flex-col gap-3">
+                <a href="tel:09140101477" class="btn-royal-primary text-center justify-center text-sm py-3">
+                    <i data-lucide="phone-call" class="w-4 h-4"></i> Call Shop: 091401 01477
+                </a>
+                <a id="whatsapp-link" href="https://api.whatsapp.com/send?phone=919140101477&text=Hello%20New%20Shukla%20Sweets%20Kanpur,%20I%20would%20like%20to%20order:" target="_blank" rel="noopener noreferrer" class="btn-royal-secondary text-center justify-center text-sm border-emerald-500/40 text-emerald-300 hover:border-emerald-400 py-2.5">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i> WhatsApp Inquiry
+                </a>
+                <a href="https://www.zomato.com/kanpur/new-shukla-sweets-and-namkeen-vikas-nagar/order" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-300/80 hover:text-amber-300 py-1 underline font-medium">
+                    Or check availability on Zomato
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Call Button -->
+    <a href="tel:09140101477" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-gradient-to-tr from-amber-600 to-amber-400 text-black flex items-center justify-center shadow-2xl shadow-amber-500/50 hover:scale-110 active:scale-95 transition-all border-2 border-yellow-200 cursor-pointer" aria-label="Call Shukla Sweets">
+        <i data-lucide="phone" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Interactive Scripts & Motion Engine -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Initialize Lenis Smooth Momentum Scroll
+        let lenis;
+        if (typeof Lenis !== 'undefined') {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                smoothTouch: false
+            });
+
+            lenis.on('scroll', () => {
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.update();
+                }
+                // Update top progress bar
+                const progress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+                const progressBar = document.getElementById('scroll-progress');
+                if (progressBar) {
+                    progressBar.style.transform = `scaleX(${progress})`;
+                }
+            });
+
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        }
+
+        // 3. 21st.dev Dynamic Cursor Spotlight System
+        document.querySelectorAll('.spotlight-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 4. 21st.dev 3D Card Tilt with Perspective
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReducedMotion) {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) * 5;
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                });
+            });
+        }
+
+        // 5. GSAP ScrollTrigger Motion Choreography
+        if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Parallax Scrub on Hero Background
+            gsap.to('#hero-parallax-img', {
+                yPercent: 20,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+
+            // Hero Entrance Timeline
+            const heroTL = gsap.timeline();
+            heroTL.from('.hero-headline', { opacity: 0, y: 40, duration: 1.1, ease: 'power3.out' })
+                  .from('.hero-subhead', { opacity: 0, y: 25, duration: 0.9, ease: 'power2.out' }, '-=0.7')
+                  .from('#stats-counter-section .spotlight-card', { opacity: 0, scale: 0.92, y: 20, duration: 0.7, stagger: 0.1, ease: 'back.out(1.2)' }, '-=0.5');
+
+            // Animated Stats Counter Up on Scroll
+            ScrollTrigger.create({
+                trigger: '#stats-counter-section',
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    document.querySelectorAll('.counter-number').forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        gsap.to(counter, {
+                            innerHTML: target,
+                            duration: 1.8,
+                            ease: 'power2.out',
+                            snap: { innerHTML: 1 },
+                            onUpdate: function() {
+                                counter.innerHTML = Math.ceil(this.targets()[0].innerHTML).toLocaleString('en-IN');
+                            }
+                        });
+                    });
+                }
+            });
+
+            // Specialities Section Stagger
+            gsap.from('#specialities .spotlight-card', {
+                scrollTrigger: {
+                    trigger: '#specialities',
+                    start: 'top 75%'
+                },
+                opacity: 0,
+                y: 35,
+                duration: 0.75,
+                stagger: 0.16,
+                ease: 'power2.out'
+            });
+
+            // Menu Section Stagger
+            gsap.from('#items-grid > div', {
+                scrollTrigger: {
+                    trigger: '#menu',
+                    start: 'top 75%'
+                },
+                opacity: 0,
+                scale: 0.95,
+                y: 30,
+                duration: 0.6,
+                stagger: 0.08,
+                ease: 'power2.out'
+            });
+
+            // Ratings Stagger
+            gsap.from('.ratings-right > div', {
+                scrollTrigger: {
+                    trigger: '#ratings',
+                    start: 'top 75%'
+                },
+                opacity: 0,
+                x: 30,
+                duration: 0.65,
+                stagger: 0.14,
+                ease: 'power2.out'
+            });
+        }
+
+        // 6. Ambient Canvas Sparkle Particles
+        const canvas = document.getElementById('sparkle-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            });
+
+            const sparkles = Array.from({ length: 42 }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                r: Math.random() * 2 + 0.6,
+                vy: Math.random() * -0.4 - 0.15,
+                vx: Math.random() * 0.3 - 0.15,
+                alpha: Math.random() * 0.75 + 0.2,
+                hue: Math.random() > 0.5 ? 42 : 30
+            }));
+
+            function renderSparkles() {
+                ctx.clearRect(0, 0, w, h);
+                sparkles.forEach(s => {
+                    s.y += s.vy;
+                    s.x += s.vx;
+                    if (s.y < 0) {
+                        s.y = h + 10;
+                        s.x = Math.random() * w;
+                    }
+                    ctx.fillStyle = `hsla(${s.hue}, 90%, 65%, ${s.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(renderSparkles);
+            }
+            renderSparkles();
+        }
+
+        // 7. Menu Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('#items-grid > div');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => {
+                    b.classList.remove('active', 'bg-amber-500', 'text-black', 'border-amber-300', 'shadow-lg');
+                    b.classList.add('bg-[#1b0a0d]', 'text-amber-200');
+                });
+                btn.classList.add('active', 'bg-amber-500', 'text-black', 'border-amber-300', 'shadow-lg');
+                btn.classList.remove('bg-[#1b0a0d]', 'text-amber-200');
+
+                const targetCategory = btn.dataset.category;
+                menuItems.forEach(item => {
+                    if (targetCategory === 'all' || item.dataset.category === targetCategory) {
+                        item.style.display = 'flex';
+                        if (!prefersReducedMotion && typeof gsap !== 'undefined') {
+                            gsap.fromTo(item, { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.35, ease: 'power2.out' });
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 8. Mobile Navigation Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (navToggle && mobileNav) {
+            navToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
+            });
+        }
+
+        // 9. Quick Order Modal with Confetti
+        const modal = document.getElementById('item-modal');
+        const modalName = document.getElementById('modal-name');
+        const modalPrice = document.getElementById('modal-price');
+        const whatsappLink = document.getElementById('whatsapp-link');
+
+        function openModal(name, price) {
+            modalName.textContent = name;
+            modalPrice.textContent = price;
+            whatsappLink.href = `https://api.whatsapp.com/send?phone=919140101477&text=${encodeURIComponent('Hello New Shukla Sweets Kanpur, I would like to order: ' + name + ' (' + price + ')')}`;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+
+            if (typeof confetti !== 'undefined') {
+                confetti({
+                    particleCount: 45,
+                    spread: 65,
+                    origin: { y: 0.75 },
+                    colors: ['#f59e0b', '#fbbf24', '#dc2626', '#ffffff']
+                });
+            }
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
